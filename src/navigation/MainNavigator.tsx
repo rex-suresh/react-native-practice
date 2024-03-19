@@ -7,7 +7,8 @@ import { NavigationContainer } from '@react-navigation/native';
 const MainStack = createStackNavigator();
 
 enum Screens {
-  HOME = 'Home'
+  HOME = 'Home',
+  DETAILS = 'Details'
 }
 
 export const MainNavigator = () => (
@@ -20,11 +21,7 @@ export const MainNavigator = () => (
         component={HomeScreen}
         options={{ headerShown: false }}
       />
-      <MainStack.Screen
-        name="Detail"
-        component={DetailScreen}
-        options={{ headerShown: false }}
-      />
+      <MainStack.Screen name={Screens.DETAILS} component={DetailScreen} />
     </MainStack.Navigator>
   </NavigationContainer>
 );
