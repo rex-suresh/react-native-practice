@@ -3,14 +3,15 @@ module.exports = {
   extends: '@react-native',
   rules: {
     quotes: ['warn', 'single'],
-    'comma-dangle': 'off',
+    'comma-dangle': 'off'
   },
+  plugins: ['@tanstack/eslint-plugin-query'],
   overrides: [
     {
       files: ['tests/**/*'],
       env: {
-        jest: true,
-      },
-    },
-  ],
+        jest: true
+      }
+    }
+  ]
 };
