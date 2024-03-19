@@ -1,23 +1,29 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from '../screens/HomeScreen';
 import { DetailScreen } from '../screens/DetailScreen';
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 const MainStack = createStackNavigator();
 
+enum Screens {
+  HOME = 'Home'
+}
+
 export const MainNavigator = () => (
   <NavigationContainer>
-    <MainStack.Navigator initialRouteName="home">
+    <MainStack.Navigator
+      initialRouteName={Screens.HOME}
+      screenOptions={{ headerShown: false }}>
       <MainStack.Screen
-        name="home"
+        name={Screens.HOME}
         component={HomeScreen}
-        options={{ title: 'Something' }}
+        options={{ headerShown: false }}
       />
       <MainStack.Screen
         name="Detail"
         component={DetailScreen}
-        options={{ title: 'Something else' }}
+        options={{ headerShown: false }}
       />
     </MainStack.Navigator>
   </NavigationContainer>
