@@ -5,3 +5,8 @@ export const parsePokemon = (pokeData: any): PokemonType => ({
   name: pokeData.name,
   mainImage: pokeData.sprites?.other['official-artwork']?.front_default
 });
+
+export const capitalize = (text: string) => {
+  const [firstLetter, ...rest] = text;
+  return `${firstLetter.toUpperCase()}${rest.join('').toLowerCase()}`;
+};
