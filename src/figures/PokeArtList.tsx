@@ -7,22 +7,24 @@ type PokeArtListProp = {
   pokemon: PokemonType;
 };
 
-export const PokeArtList = ({ pokemon }: PokeArtListProp) => {
-  return (
-    <FlatList
-      data={[pokemon.mainImage, ...pokemon.otherImages]}
-      renderItem={pokeImage => <PokeArtContainer imageUrl={pokeImage.item} />}
-      keyExtractor={(item, _index) => item}
-      contentContainerStyle={styles.imageList}
-      horizontal
-      directionalLockEnabled
-    />
-  );
-};
+export const PokeArtList = ({ pokemon }: PokeArtListProp) => (
+  <FlatList
+    data={[pokemon.mainImage, ...pokemon.otherImages]}
+    renderItem={pokeImage => <PokeArtContainer imageUrl={pokeImage.item} />}
+    keyExtractor={(item, _index) => item}
+    contentContainerStyle={styles.imageList}
+    style={styles.container}
+    horizontal
+    directionalLockEnabled
+  />
+);
 
 const styles = StyleSheet.create({
   imageList: {
     gap: 10,
     margin: 10
+  },
+  container: {
+    maxHeight: 200
   }
 });
