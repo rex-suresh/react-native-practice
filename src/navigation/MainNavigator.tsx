@@ -3,13 +3,9 @@ import { HomeScreen } from '../screens/HomeScreen';
 import { DetailScreen } from '../screens/DetailScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { Screens } from './Screens';
 
 const MainStack = createStackNavigator();
-
-enum Screens {
-  HOME = 'Home',
-  DETAILS = 'Details'
-}
 
 export const MainNavigator = () => (
   <NavigationContainer>

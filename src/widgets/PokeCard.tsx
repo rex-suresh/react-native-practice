@@ -1,10 +1,13 @@
-import React, { memo, useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import { PokeArt } from '../figures/PokeArt';
-import { requestPokemon } from '../API/network';
+import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
-import { capitalize, parsePokemon } from '../utils/parsers';
+import React, { memo, useEffect, useState } from 'react';
+import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
+import { requestPokemon } from '../API/network';
+import { PokeArt } from '../figures/PokeArt';
+import { Screens } from '../navigation/Screens';
 import { PokemonType } from '../utils/models';
+import { parsePokemon } from '../utils/parsers';
+import { PokeTitle } from './PokeTitle';
 
 type PokeCardParams = {
   pokeID: number;
@@ -12,18 +15,18 @@ type PokeCardParams = {
 
 const pokeCardWidth = 170;
 
-const PokeCardTitle = ({ pokemon }: { pokemon: PokemonType }) => (
-  <Text numberOfLines={2} ellipsizeMode="tail" style={styles.pokeTitle}>
-    {capitalize(pokemon.name)}
-  </Text>
-);
-
 export const PokeCard = memo(({ pokeID }: PokeCardParams) => {
   const [pokemon, setPokemon] = useState<PokemonType | null>(null);
+  const navigation = useNavigation<any>();
+
   const { data, isLoading } = useQuery({
     queryKey: [`pokemon-${pokeID}`],
     queryFn: () => requestPokemon(pokeID)
   });
+
+  const navigateToDetail = () => {
+    navigation.navigate(Screens.DETAILS, { pokemon });
+  };
 
   useEffect(() => {
     if (data) {
@@ -40,10 +43,12 @@ export const PokeCard = memo(({ pokeID }: PokeCardParams) => {
   }
 
   return (
-    <View style={styles.card}>
-      <PokeArt imageUrl={pokemon.mainImage} />
-      <PokeCardTitle pokemon={pokemon} />
-    </View>
+    <Pressable onPress={navigateToDetail}>
+      <View style={styles.card}>
+        <PokeArt imageUrl={pokemon.mainImage} />
+        <PokeTitle pokemon={pokemon} />
+      </View>
+    </Pressable>
   );
 });
 
@@ -55,10 +60,5 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     margin: 5,
     padding: 10
-  },
-  pokeTitle: {
-    fontWeight: '600',
-    textAlign: 'center',
-    fontSize: 20
   }
 });

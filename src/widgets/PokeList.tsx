@@ -11,6 +11,7 @@ export const PokeList = () => (
     renderItem={pokemonId => <PokeCard pokeID={pokemonId.item} />}
     ListHeaderComponent={LogoArt}
     contentContainerStyle={styles.list}
+    directionalLockEnabled
   />
 );
 
