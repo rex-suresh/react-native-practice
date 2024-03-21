@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
-import { PokemonType } from '../utils/models';
+import { type PokemonType } from '../utils/models';
 import { PokeArtContainer } from './PokeArt';
 
 type PokeArtListProp = {
@@ -21,10 +21,10 @@ export const PokeArtList = ({ pokemon }: PokeArtListProp) => (
 
 const styles = StyleSheet.create({
   imageList: {
-    gap: 10,
     margin: 10
   },
   container: {
-    maxHeight: 200
+    maxHeight: 250,
+    marginBottom: 20
   }
 });

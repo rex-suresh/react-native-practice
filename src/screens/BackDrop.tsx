@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dimensions, ImageBackground, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const bgImagePath = '../../resources/images/pokeBG.png';
 
@@ -15,6 +16,20 @@ export const BackDrop = ({ children }: any) => {
       style={styles.screen}>
       {children}
     </ImageBackground>
+  );
+};
+
+export const BackDropGradient = ({
+  colors,
+  children
+}: {
+  colors: string[];
+  children: JSX.Element | JSX.Element[];
+}) => {
+  return (
+    <LinearGradient colors={colors} angle={45} style={styles.screen} useAngle>
+      {children}
+    </LinearGradient>
   );
 };
 

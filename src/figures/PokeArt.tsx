@@ -17,23 +17,24 @@ export const PokeArt = ({ imageUrl }: ImagePropType) => (
 
 export const PokeArtContainer = ({ imageUrl }: ImagePropType) => (
   <View style={styles.container}>
-    <PokeImage imageUrl={imageUrl} />
+    <PokeArt imageUrl={imageUrl} />
   </View>
 );
 
 const styles = StyleSheet.create({
   artBox: {
-    width: 150,
-    aspectRatio: 1
+    aspectRatio: 1,
+    maxWidth: 250
   },
   art: {
     width: '100%',
     aspectRatio: 1
   },
   container: {
-    width: 170,
-    aspectRatio: 1,
-    borderRadius: 20,
-    backgroundColor: 'rgba(110,110,110,0.3)'
+    width: '100%',
+    height: 250,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20
   }
 });

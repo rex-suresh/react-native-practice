@@ -3,4 +3,5 @@ export type PokemonType = {
   id: number;
   mainImage: string;
   otherImages: string[];
+  types: string[];
 };

@@ -1,16 +1,18 @@
 import React from 'react';
-import { PokemonType } from '../utils/models';
-import { BackDrop } from './BackDrop';
-import { PokeArtList } from '../figures/PokeArtList';
-import { PokeTitle } from '../widgets/PokeTitle';
+import { PokeArtContainer } from '../figures/PokeArt';
 import { PageRouteProps } from '../navigation/Screens';
+import { PokemonType } from '../utils/models';
+import { mapTypeToColors } from '../utils/parsers';
+import { BackDropGradient } from './BackDrop';
+import { PokeGeneralInfo } from '../widgets/PokeInfo';
 
 export const DetailScreen = ({ route }: PageRouteProps) => {
   const { pokemon } = route.params as { pokemon: PokemonType };
   return (
-    <BackDrop>
-      <PokeArtList pokemon={pokemon} />
-      <PokeTitle pokemon={pokemon} />
-    </BackDrop>
+    <BackDropGradient colors={mapTypeToColors(pokemon.types)}>
+      <PokeArtContainer imageUrl={pokemon.mainImage} />
+
+      <PokeGeneralInfo pokemon={pokemon} />
+    </BackDropGradient>
   );
 };

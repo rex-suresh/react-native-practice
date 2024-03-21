@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { pokeIds } from '../dataGenerators/pokemonIdIterator';
 import { LogoArt } from '../figures/LogoArt';
 import { PokeCard } from './PokeCard';
 
-export const PokeList = () => (
+export const PokeList = memo(() => (
   <FlatList
     data={[...pokeIds]}
     renderItem={pokemonId => <PokeCard pokeID={pokemonId.item} />}
@@ -13,7 +13,7 @@ export const PokeList = () => (
     contentContainerStyle={styles.list}
     directionalLockEnabled
   />
-);
+));
 
 const styles = StyleSheet.create({
   list: {

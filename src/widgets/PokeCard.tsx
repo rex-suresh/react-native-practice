@@ -1,7 +1,8 @@
-import { useNavigation } from '@react-navigation/native';
-import { useQuery } from '@tanstack/react-query';
 import React, { memo, useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
+
 import { requestPokemon } from '../API/network';
 import { PokeArt } from '../figures/PokeArt';
 import { Screens } from '../navigation/Screens';
