@@ -14,7 +14,7 @@ type PokeCardParams = {
   pokeID: number;
 };
 
-const pokeCardWidth = 170;
+export const pokeCardWidth = 170;
 
 export const PokeCard = memo(({ pokeID }: PokeCardParams) => {
   const [pokemon, setPokemon] = useState<PokemonType | null>(null);

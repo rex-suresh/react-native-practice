@@ -1,6 +1,6 @@
 import React from 'react';
 import { MainNavigator } from './navigation/MainNavigator';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient({
@@ -9,6 +9,7 @@ const queryClient = new QueryClient({
 
 export const App = () => (
   <SafeAreaView style={styles.screen}>
+    <StatusBar animated barStyle={'default'} />
     <QueryClientProvider client={queryClient}>
       <MainNavigator />
     </QueryClientProvider>
