@@ -10,10 +10,7 @@ export const parsePokemon = (pokeData: any): PokemonType => ({
   id: pokeData.id,
   name: pokeData.name,
   mainImage: pokeData.sprites?.other['official-artwork']?.front_default,
-  otherImages: [
-    pokeData.sprites?.other['official-artwork']?.front_shiny,
-    pokeData.sprites?.other?.dream_world?.front_default
-  ],
+  shinyImage: pokeData.sprites?.other['official-artwork']?.front_shiny,
   types: pokeData.types?.map(
     (entry: { type: { name: string } }) => entry?.type.name
   ),

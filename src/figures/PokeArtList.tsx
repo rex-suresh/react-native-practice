@@ -9,8 +9,8 @@ type PokeArtListProp = {
 
 export const PokeArtList = ({ pokemon }: PokeArtListProp) => (
   <FlatList
-    data={[pokemon.mainImage, ...pokemon.otherImages]}
-    renderItem={pokeImage => <PokeArtContainer imageUrl={pokeImage.item} />}
+    data={[pokemon.mainImage, pokemon.shinyImage]}
+    renderItem={pokeImage => <PokeArtContainer pokemon={pokeImage.item} />}
     keyExtractor={(item, _index) => item}
     contentContainerStyle={styles.imageList}
     style={styles.container}

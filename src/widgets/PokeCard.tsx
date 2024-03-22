@@ -46,7 +46,7 @@ export const PokeCard = memo(({ pokeID }: PokeCardParams) => {
   return (
     <Pressable onPress={navigateToDetail}>
       <View style={styles.card}>
-        <PokeArt imageUrl={pokemon.mainImage} />
+        <PokeArt pokemon={pokemon.mainImage} />
         <PokeTitle pokemon={pokemon} />
       </View>
     </Pressable>

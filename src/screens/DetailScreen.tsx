@@ -10,8 +10,7 @@ export const DetailScreen = ({ route }: PageRouteProps) => {
   const { pokemon } = route.params as { pokemon: PokemonType };
   return (
     <BackDropGradient colors={mapTypeToColors(pokemon.types)}>
-      <PokeArtContainer imageUrl={pokemon.mainImage} />
-
+      <PokeArtContainer pokemon={pokemon} />
       <PokeGeneralInfo pokemon={pokemon} />
     </BackDropGradient>
   );

@@ -1,25 +1,47 @@
-import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { PokemonProp } from '../utils/models';
 
 type ImagePropType = {
   imageUrl: string;
+  loadEndCallback?: () => void;
 };
 
-const PokeImage = ({ imageUrl }: ImagePropType) => (
-  <Image source={{ uri: imageUrl, cache: 'force-cache' }} style={styles.art} />
+const PokeImage = ({ imageUrl, loadEndCallback }: ImagePropType) => (
+  <Image
+    source={{ uri: imageUrl, cache: 'only-if-cached' }}
+    style={styles.art}
+    onLoadEnd={loadEndCallback}
+  />
 );
 
-export const PokeArt = ({ imageUrl }: ImagePropType) => (
-  <View style={styles.artBox}>
-    <PokeImage imageUrl={imageUrl} />
-  </View>
-);
+export const PokeArt = ({ imageUrl }: ImagePropType) => {
+  return (
+    <View style={styles.artBox}>
+      <PokeImage imageUrl={imageUrl} />
+    </View>
+  );
+};
 
-export const PokeArtContainer = ({ imageUrl }: ImagePropType) => (
-  <View style={styles.container}>
-    <PokeArt imageUrl={imageUrl} />
-  </View>
-);
+export const PokeArtContainer = ({ pokemon }: PokemonProp) => {
+  const [isShiny, setShiny] = useState(false);
+
+  const toggleShine = () => {
+    setShiny(!isShiny);
+  };
+
+  return (
+    <Pressable onPress={toggleShine}>
+      <View style={styles.container}>
+        {isShiny ? (
+          <PokeArt imageUrl={pokemon.shinyImage} />
+        ) : (
+          <PokeArt imageUrl={pokemon.mainImage} />
+        )}
+      </View>
+    </Pressable>
+  );
+};
 
 const styles = StyleSheet.create({
   artBox: {

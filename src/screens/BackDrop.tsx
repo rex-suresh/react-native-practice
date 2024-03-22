@@ -1,5 +1,10 @@
-import React from 'react';
-import { Dimensions, ImageBackground, StyleSheet } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import {
+  Animated,
+  Dimensions,
+  ImageBackground,
+  StyleSheet
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 const bgImagePath = '../../resources/images/pokeBG.png';
@@ -19,6 +24,8 @@ export const BackDrop = ({ children }: any) => {
   );
 };
 
+const AnimatedGradient = Animated.createAnimatedComponent(LinearGradient);
+
 export const BackDropGradient = ({
   colors,
   children
@@ -26,10 +33,26 @@ export const BackDropGradient = ({
   colors: string[];
   children: JSX.Element | JSX.Element[];
 }) => {
+  const gradientAngle = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(gradientAngle, {
+        toValue: 360,
+        duration: 5000,
+        useNativeDriver: false
+      })
+    ).start();
+  }, [gradientAngle]);
+
   return (
-    <LinearGradient colors={colors} angle={45} style={styles.screen} useAngle>
+    <AnimatedGradient
+      colors={colors}
+      angle={gradientAngle}
+      style={styles.screen}
+      useAngle>
       {children}
-    </LinearGradient>
+    </AnimatedGradient>
   );
 };
 
