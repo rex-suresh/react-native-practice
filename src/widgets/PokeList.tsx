@@ -9,6 +9,7 @@ const slackWidth = 10;
 
 export const PokeList = memo(() => {
   const { width } = Dimensions.get('window');
+  const columnCount = Math.floor(width / (pokeCardWidth + slackWidth));
 
   return (
     <FlatList
@@ -16,7 +17,7 @@ export const PokeList = memo(() => {
       renderItem={pokemonId => <PokeCard pokeID={pokemonId.item} />}
       ListHeaderComponent={LogoArt}
       contentContainerStyle={styles.list}
-      numColumns={Math.floor(width / (pokeCardWidth + slackWidth))}
+      numColumns={columnCount}
       keyExtractor={item => item.toString()}
       directionalLockEnabled
     />

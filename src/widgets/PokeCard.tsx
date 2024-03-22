@@ -58,6 +58,8 @@ const styles = StyleSheet.create({
     width: pokeCardWidth,
     height: 200,
     backgroundColor: 'rgba(110,110,110,0.5)',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 20,
     margin: 5,
     padding: 10

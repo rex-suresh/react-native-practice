@@ -1,5 +1,11 @@
 import { type PokemonType } from './models';
 
+const extractStat = (statList: any[]) =>
+  statList.reduce((allStats, statItem) => {
+    allStats.push([statItem?.stat.name, statItem?.base_stat]);
+    return allStats;
+  }, []);
+
 export const parsePokemon = (pokeData: any): PokemonType => ({
   id: pokeData.id,
   name: pokeData.name,
@@ -10,7 +16,8 @@ export const parsePokemon = (pokeData: any): PokemonType => ({
   ],
   types: pokeData.types?.map(
     (entry: { type: { name: string } }) => entry?.type.name
-  )
+  ),
+  stats: extractStat(pokeData.stats)
 });
 
 export const capitalize = (text: string) => {
