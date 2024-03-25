@@ -9,7 +9,7 @@ type ImagePropType = {
 
 const PokeImage = ({ imageUrl, loadEndCallback }: ImagePropType) => (
   <Image
-    source={{ uri: imageUrl, cache: 'only-if-cached' }}
+    source={{ uri: imageUrl, cache: 'force-cache' }}
     style={styles.art}
     onLoadEnd={loadEndCallback}
   />

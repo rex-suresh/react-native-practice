@@ -20,6 +20,7 @@ export const PokemonStats = ({ pokemon }: PokemonProp) => (
     )}
     contentContainerStyle={styles.statsBox}
     style={styles.wrapper}
+    scrollEnabled={false}
   />
 );
 
